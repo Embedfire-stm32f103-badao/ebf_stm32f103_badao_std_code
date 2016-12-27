@@ -40,6 +40,19 @@ struct rtc_time clocktime=
 extern __IO uint32_t TimeDisplay ;
 
 
+
+//【*】注意事项：
+//在bsp_rtc.h文件中：
+
+//1.可设置宏USE_LCD_DISPLAY控制是否使用LCD显示
+//2.可设置宏RTC_CLOCK_SOURCE_LSI和RTC_CLOCK_SOURCE_LSE控制使用LSE晶振还是LSI晶振
+
+//3.STM32的LSE晶振要求非常严格，同样的电路、板子批量产品时总有些会出现问题。
+//  本实验中默认使用LSI晶振。
+//  
+//4.！！！若希望RTC在主电源掉电后仍然运行，需要给开发板的电池槽安装钮扣电池，
+//  ！！！且改成使用外部晶振模式RTC_CLOCK_SOURCE_LSE
+//  钮扣电池型号：CR1220
 /**
   * @brief  主函数
   * @param  无  

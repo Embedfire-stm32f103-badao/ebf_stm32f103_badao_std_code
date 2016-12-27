@@ -78,7 +78,17 @@ void RTC_CheckAndConfig(struct rtc_time *tm)
 	}
 	else
 	{
-	  /*启动无需设置新时钟*/
+	  /*LSE启动无需设置新时钟*/
+		
+#ifdef RTC_CLOCK_SOURCE_LSI		
+			/* 使能 LSI */
+			RCC_LSICmd(ENABLE);
+
+			/* 等待 LSI 准备好 */
+			while (RCC_GetFlagStatus(RCC_FLAG_LSIRDY) == RESET)
+			{}
+#endif
+
 		/*检查是否掉电重启*/
 		if (RCC_GetFlagStatus(RCC_FLAG_PORRST) != RESET)
 		{
