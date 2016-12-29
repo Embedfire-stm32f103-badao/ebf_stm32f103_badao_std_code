@@ -416,26 +416,26 @@ void Time_Show(struct rtc_time *tm)
 /*
  * 函数名：Time_Adjust
  * 描述  ：时间调节
- * 输入  ：用于读取RTC时间的结构体指针
+ * 输入  ：用于读取RTC时间的结构体指针（北京时间）
  * 输出  ：无
  * 调用  ：外部调用
  */
 void Time_Adjust(struct rtc_time *tm)
 {
 	
-			/* RTC Configuration */
+			/* RTC 配置 */
 		RTC_Configuration();
 
-	  /* Wait until last write operation on RTC registers has finished */
+	  /* 等待确保上一次操作完成 */
 	  RTC_WaitForLastTask();
 		  
-	  /* Get wday */
+	  /* 计算星期 */
 	  GregorianDay(tm);
 
-	  /* 修改当前RTC计数寄存器内容 */
-	  RTC_SetCounter(mktimev(tm));
+	  /* 由日期计算时间戳并写入到RTC计数寄存器 */
+	  RTC_SetCounter(mktimev(tm)-TIME_ZOOM);
 
-	  /* Wait until last write operation on RTC registers has finished */
+	  /* 等待确保上一次操作完成 */
 	  RTC_WaitForLastTask();
 }
 
@@ -453,7 +453,7 @@ void Time_Display(uint32_t TimeVar,struct rtc_time *tm)
 	   uint8_t str[200]; // 字符串暂存  	
 
 	   /*  把标准时间转换为北京时间*/
-	   BJ_TimeVar =TimeVar + 8*60*60;
+	   BJ_TimeVar =TimeVar + TIME_ZOOM;
 
 	   to_tm(BJ_TimeVar, tm);/*把定时器的值转换为北京时间*/	
 	
