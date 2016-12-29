@@ -78,6 +78,13 @@ void RTC_CheckAndConfig(struct rtc_time *tm)
 	}
 	else
 	{
+		
+		/* 使能 PWR 和 Backup 时钟 */
+	  RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | RCC_APB1Periph_BKP, ENABLE);
+	
+		/* 允许访问 Backup 区域 */
+	  PWR_BackupAccessCmd(ENABLE);
+		
 	  /*LSE启动无需设置新时钟*/
 		
 #ifdef RTC_CLOCK_SOURCE_LSI		
