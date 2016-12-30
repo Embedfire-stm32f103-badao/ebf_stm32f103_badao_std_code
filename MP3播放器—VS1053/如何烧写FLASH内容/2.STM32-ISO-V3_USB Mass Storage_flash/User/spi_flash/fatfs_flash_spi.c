@@ -9,8 +9,8 @@
   * @attention
   *
   * 实验平台:秉火 iSO STM32 开发板 
-  * 论坛    :http://www.chuxue123.com
-  * 淘宝    :http://firestm32.taobao.com
+  * 论坛    :http://www.firebbs.cn
+  * 淘宝    :https://fire-stm32.taobao.com
   *
   ******************************************************************************
   */

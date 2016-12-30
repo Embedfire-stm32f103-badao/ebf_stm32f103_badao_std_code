@@ -21,9 +21,9 @@
 	(4) 录音例程也是把音频文件保存在SD卡内，所以必须插入SD卡才可使用录音例程。
 	
 
-论坛    :http://www.chuxue123.com
-淘宝    :http://firestm32.taobao.com
+论坛    :http://www.firebbs.cn
+淘宝    :https://fire-stm32.taobao.com
 
 
-forum    :http://www.chuxue123.com
-shop	 :http://firestm32.taobao.com
+forum    :http://www.firebbs.cn
+shop	 :https://fire-stm32.taobao.com
