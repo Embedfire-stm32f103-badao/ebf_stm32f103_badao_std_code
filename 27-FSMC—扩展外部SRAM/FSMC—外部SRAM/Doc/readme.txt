@@ -27,8 +27,8 @@ SRAM芯片的接口与STM32的FSMC相连。
 		CS	<--->PG10 	(FSMC_NE3)
 		WE	<--->PD5	(FSMC_NWE)
 		OE	<--->PD4	(FSMC_NOE)
-		LB	<--->PE1	(FSMC_NBL0)
-		UB	<--->PE0	(FSMC_NBL1)
+		UB	<--->PE1	(FSMC_NBL0)
+		LB	<--->PE0	(FSMC_NBL1)
 		
 地址和数据信号线省略，本连接的SRAM基地址为 (0x68000000)，结束地址为(0x68100000),大小为1M字节
 

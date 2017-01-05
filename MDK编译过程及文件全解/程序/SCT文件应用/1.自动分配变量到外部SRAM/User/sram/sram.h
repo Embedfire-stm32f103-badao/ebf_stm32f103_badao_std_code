@@ -176,12 +176,12 @@
 #define FSMC_OE_GPIO_PIN         GPIO_Pin_4
 
 
-/*LB数据掩码*/
+/*UB数据掩码*/
 #define FSMC_UDQM_GPIO_PORT        GPIOE
 #define FSMC_UDQM_GPIO_CLK         RCC_APB2Periph_GPIOE
 #define FSMC_UDQM_GPIO_PIN         GPIO_Pin_1
 
-/*UB数据掩码*/
+/*LB数据掩码*/
 #define FSMC_LDQM_GPIO_PORT        GPIOE
 #define FSMC_LDQM_GPIO_CLK         RCC_APB2Periph_GPIOE
 #define FSMC_LDQM_GPIO_PIN         GPIO_Pin_0
