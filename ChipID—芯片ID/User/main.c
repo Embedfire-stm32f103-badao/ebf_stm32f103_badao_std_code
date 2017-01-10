@@ -38,7 +38,7 @@ int main(void)
 	Get_ChipID();	
 	
 	/* printf the chipid */
-	printf("\r\n芯片的唯一ID为: %X-%X-%X\r\n",
+	printf("\r\n芯片的唯一ID为: 0x%08X-%08X-%08X\r\n",
 	        ChipUniqueID[0],ChipUniqueID[1],ChipUniqueID[2]);
 	
 	/* printf the flash memory amount */
