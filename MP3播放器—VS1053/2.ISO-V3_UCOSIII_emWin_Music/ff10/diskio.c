@@ -133,7 +133,7 @@ DRESULT disk_read (
             for(i=0;i<count;i++)
             {
             
-              SD_ReadBlock(align_buffer, sector*SD_BLOCK_SIZE+SD_BLOCK_SIZE*i, SD_BLOCK_SIZE);
+              SD_ReadBlock(align_buffer, (uint64_t)sector*SD_BLOCK_SIZE+SD_BLOCK_SIZE*i, SD_BLOCK_SIZE);
 
                   /* Check if the Transfer is finished */
               SD_WaitReadOperation();  //循环查询dma传输是否结束
@@ -151,7 +151,7 @@ DRESULT disk_read (
             {  
                 if (count > 1)
                 {
-                  SD_ReadMultiBlocks(buff, sector*SD_BLOCK_SIZE, SD_BLOCK_SIZE, count);
+                  SD_ReadMultiBlocks(buff, (uint64_t)sector*SD_BLOCK_SIZE, SD_BLOCK_SIZE, count);
                 
                       /* Check if the Transfer is finished */
                      SD_WaitReadOperation();  //循环查询dma传输是否结束
@@ -163,7 +163,7 @@ DRESULT disk_read (
                 else
                 {
                   
-                  SD_ReadBlock(buff, sector*SD_BLOCK_SIZE, SD_BLOCK_SIZE);
+                  SD_ReadBlock(buff, (uint64_t)sector*SD_BLOCK_SIZE, SD_BLOCK_SIZE);
 
                       /* Check if the Transfer is finished */
                      SD_WaitReadOperation();  //循环查询dma传输是否结束
@@ -217,7 +217,7 @@ DRESULT disk_write (
         for(i=0;i<count;i++)
         {
           memcpy(align_buffer,buff,SD_BLOCK_SIZE);
-          SD_WriteBlock(align_buffer,sector*SD_BLOCK_SIZE+SD_BLOCK_SIZE*i,SD_BLOCK_SIZE);//单个sector的写操作
+          SD_WriteBlock(align_buffer,(uint64_t)sector*SD_BLOCK_SIZE+SD_BLOCK_SIZE*i,SD_BLOCK_SIZE);//单个sector的写操作
           
           /* Check if the Transfer is finished */
           SD_WaitWriteOperation();	                  //等待dma传输结束
@@ -231,14 +231,14 @@ DRESULT disk_write (
       {    
 					if (count > 1)
 					{
-						SD_WriteMultiBlocks((uint8_t *)buff, sector*SD_BLOCK_SIZE,SD_BLOCK_SIZE, count);						
+						SD_WriteMultiBlocks((uint8_t *)buff, (uint64_t)sector*SD_BLOCK_SIZE,SD_BLOCK_SIZE, count);						
 						/* Check if the Transfer is finished */
 						SD_WaitWriteOperation();	   //等待dma传输结束
 						while(SD_GetStatus() != SD_TRANSFER_OK); //等待sdio到sd卡传输结束
 					}
 					else
 					{
-						SD_WriteBlock((uint8_t *)buff,sector*SD_BLOCK_SIZE,SD_BLOCK_SIZE);						
+						SD_WriteBlock((uint8_t *)buff,(uint64_t)sector*SD_BLOCK_SIZE,SD_BLOCK_SIZE);						
 						/* Check if the Transfer is finished */
 						SD_WaitWriteOperation();	   //等待dma传输结束
 						while(SD_GetStatus() != SD_TRANSFER_OK); //等待sdio到sd卡传输结束
@@ -282,7 +282,7 @@ DRESULT disk_ioctl (
 						*(WORD * )buff = 512;
 					break;
 					case GET_BLOCK_SIZE:      // Get erase block size in unit of sector (DWORD)
-						*(DWORD * )buff = SDCardInfo.CardBlockSize;
+						*(DWORD * )buff = 1;
 					break;
 					case GET_SECTOR_COUNT:
 						*(DWORD * )buff = SDCardInfo.CardCapacity/SDCardInfo.CardBlockSize;
