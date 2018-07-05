@@ -1,14 +1,14 @@
  /**
   ******************************************************************************
   * @file    fatfs_flash_spi.c
-  * @author  秉火
+  * @author  野火
   * @version V1.0
   * @date    2015-xx-xx
   * @brief   spi flash 底层应用函数bsp 
   ******************************************************************************
   * @attention
   *
-  * 实验平台:秉火 iSO STM32 开发板 
+  * 实验平台:野火 iSO STM32 开发板 
   * 论坛    :http://www.firebbs.cn
   * 淘宝    :https://fire-stm32.taobao.com
   *
