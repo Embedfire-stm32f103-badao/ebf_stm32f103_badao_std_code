@@ -1,0 +1,25 @@
+1.关于中文字库：例程中用到了液晶中文显示，需要HZLIB.bin文件，
+  本例程把HZLIB.bin文件直接烧写在外部Flash上（不在文件系统内），
+  所以为保证本例程正常运行需要先烧写字库，可参考（0-字库、图片
+  文件放入外部Flash方法（flash））。
+2.关于游戏文件：例程只支持以nes或者NES格式的游戏文件，系统默认
+  只读取放在外部Flash文件系统内的游戏文件，所以为保证正常运行
+  需要把游戏文件拷贝到外部Flash文件系统内（根目录下）。文件拷
+  贝方法可参考（0-字库、图片文件放入外部Flash方法（flash））。
+3.在游戏界面中可按开发板上的KEY2退出游戏界面。
+4.在开发板PHONE音频接口有游戏音频输出，插入耳机可欣赏游戏声音。
+
+野火STM32-ISO开发板例程GIT仓库地址：
+http://git.oschina.net/wildfireteam/wildfire_stm32_iso.git
+
+论坛    :http://www.firebbs.cn
+淘宝    :https://fire-stm32.taobao.com
+邮箱	:wildfireteam@163.com
+
+
+
+Wildfire STM32 ISO development board program. 
+
+forum    :http://www.firebbs.cn
+shop	 :https://fire-stm32.taobao.com
+email	 :wildfireteam@163.com

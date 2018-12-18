@@ -1,0 +1,29 @@
+程序支持的功能有：歌词显示、歌曲列表显示、快进、快退、暂停/播放、上/下一曲、音量调节，录音
+
+注意：ISO在出厂前已经在FLASH内存有MP3测试文件、字库、图片等MP3需要使用到的资源
+      如果你不小心把FLASH（W25Q64）的内容擦除了，那么要重新往FLASH拷贝内容
+      
+      拷贝的方法见：如何烧写FLASH内容文件夹，里面有方法。
+
+1.ISO_VS1053裸机例程
+	例程通过读取VS1053内部ID：vs1053:83FF，并通过串口打印到调试助手。
+	例程最后直接读取外部Flash文件系统内music/TestFile.mp3音频文件并播放。
+        ISO板子在出厂前，已经在FLASH上放有该测试文件     
+	
+2.ISO_UCOSIII_emWin_DEMO_Music
+3.ISO_UCOSIII_emWin_DEMO_Recorder
+	两个例程是VS1053模块的应用示例，使用uCOSIII+emWin平台。
+	在使用这两个例程之前：	
+	(1) 例程默认读取SD卡里边音频文件(支持mp3,wav,flac格式)，在使用例程之前务必
+	插入SD卡，音乐播放器支持同步歌词播放，支持lrc格式歌词文件，歌词文件必须存放
+	在跟音频文件相同目录下，并且名称相同仅有文件扩展名不同；目前仅兼容直接从百度
+	音乐(http://music.baidu.com)下载的歌词文件。
+	(4) 录音例程也是把音频文件保存在SD卡内，所以必须插入SD卡才可使用录音例程。
+	
+
+论坛    :http://www.firebbs.cn
+淘宝    :https://fire-stm32.taobao.com
+
+
+forum    :http://www.firebbs.cn
+shop	 :https://fire-stm32.taobao.com
