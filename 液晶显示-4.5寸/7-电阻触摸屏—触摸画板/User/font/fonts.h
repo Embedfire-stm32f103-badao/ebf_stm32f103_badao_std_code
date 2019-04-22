@@ -37,7 +37,7 @@ extern sFONT Font8x16;
 
 //0表示使用SD卡字模，非零表示FLASH字模,由于SD卡字模有文件系统，速度慢很多。
 
-#define GBKCODE_FLASH 						0
+#define GBKCODE_FLASH 						1
 
 #if GBKCODE_FLASH
 	/*使用FLASH字模*/
