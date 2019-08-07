@@ -174,7 +174,6 @@ uint8_t TPAD_Init(void)
 	{
 		tpad_default_val = temp;
 		// 调试的时候可以把捕获的值打印出来，看看默认的充电时间是多少
-	  printf("电容按键默认充电时间为: %d us\n",tpad_default_val);
 		return 0;  // 成功
 	}
 	else
@@ -224,7 +223,7 @@ uint8_t TPAD_Scan(void)
   // 当扫描的值大于空载值加上默认的门限值之后，表示按键按下
 	// 这个TPAD_GATE_VAL根据硬件决定，需要实际测试
 	if(scan_val > (tpad_default_val+TPAD_GATE_VAL))
-	{						
+	{				
     // 再次检测，类似于机械按键的去抖
 		scan_val = TPAD_Get_MaxVal(sample);		
 		if( ( keyen == 0 )&& (scan_val > (tpad_default_val+TPAD_GATE_VAL)))
