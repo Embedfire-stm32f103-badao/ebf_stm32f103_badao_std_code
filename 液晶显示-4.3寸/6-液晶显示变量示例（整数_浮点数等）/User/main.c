@@ -17,7 +17,7 @@
   
 #include "stm32f10x.h"
 #include "./usart/bsp_usart.h"
-#include "./lcd/bsp_ili9806g_lcd.h"
+#include "./lcd/bsp_nt35510_lcd.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -30,7 +30,7 @@ void Printf_Charater(void)   ;
 int main(void)
 {	
 	//LCD 初始化
-	ILI9806G_Init ();         
+	NT35510_Init ();         
 
 	/* USART config */
 	USART_Config();		
@@ -42,8 +42,8 @@ int main(void)
  //其中0、3、5、6 模式适合从左至右显示文字，
  //不推荐使用其它模式显示文字	其它模式显示文字会有镜像效果			
  //其中 6 模式为大部分液晶例程的默认显示方向  
-	ILI9806G_GramScan ( 6 );
-	ILI9806G_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* 清屏，显示全黑 */
+	NT35510_GramScan ( 6 );
+	NT35510_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* 清屏，显示全黑 */
 
 	Printf_Charater();
 	
@@ -79,7 +79,7 @@ void LCD_Test(void)
   LCD_ClearLine(LINE(5));	/* 清除单行文字 */
 	
 	/*然后显示该字符串即可，其它变量也是这样处理*/
-	ILI9806G_DispStringLine_EN_CH(LINE(5),dispBuff);
+	NT35510_DispStringLine_EN_CH(LINE(5),dispBuff);
 	
 	
 	/*使用c标准库把变量转化成字符串*/
@@ -87,7 +87,7 @@ void LCD_Test(void)
   LCD_ClearLine(LINE(6));	/* 清除单行文字 */
 	
 	/*然后显示该字符串即可，其它变量也是这样处理*/
-	ILI9806G_DispStringLine_EN_CH(LINE(6),dispBuff);
+	NT35510_DispStringLine_EN_CH(LINE(6),dispBuff);
 
 
 	/*使用c标准库把变量转化成字符串*/
@@ -95,7 +95,7 @@ void LCD_Test(void)
   LCD_ClearLine(LINE(7));	/* 清除单行文字 */
 	
 	/*然后显示该字符串即可，其它变量也是这样处理*/
-	ILI9806G_DispStringLine_EN_CH(LINE(7),dispBuff);
+	NT35510_DispStringLine_EN_CH(LINE(7),dispBuff);
 	
 	/********居中显示示例*******/
 	LCD_SetTextColor(GREEN);
@@ -105,16 +105,16 @@ void LCD_Test(void)
 	sprintf(dispBuff,"%*c%s",2,' ',pStr);
 	
 	LCD_ClearLine(LINE(9));												// 清除单行文字 
-	ILI9806G_DispStringLine_EN_CH(LINE(9),dispBuff);//显示格式化后的字符串
+	NT35510_DispStringLine_EN_CH(LINE(9),dispBuff);//显示格式化后的字符串
 
-	ILI9806G_DispStringLine_EN_CH(LINE(11),"纯英文24x32居中示例：");
+	NT35510_DispStringLine_EN_CH(LINE(11),"纯英文24x32居中示例：");
 	LCD_SetFont(&Font24x48);	
 	pStr = "ABCDEF";
 	//居中时，要插入的空格个数 = (液晶宽度/单个字体宽度 - 字符串长度)/2
 	sprintf(dispBuff,"%*c%s",((LCD_X_LENGTH/(((sFONT *)LCD_GetFont())->Width))-strlen(pStr))/2,' ',pStr);
  
 	LCD_ClearLine(LINE(8));													// 清除单行文字 
-	ILI9806G_DispStringLine_EN_CH(LINE(8),dispBuff);//显示格式化后的字符串
+	NT35510_DispStringLine_EN_CH(LINE(8),dispBuff);//显示格式化后的字符串
 	
 	LCD_SetFont(&Font16x32);	
 	pStr = "中文居中示例";
@@ -124,7 +124,7 @@ void LCD_Test(void)
 	sprintf(dispBuff,"%*c%s",(LCD_X_LENGTH/(WIDTH_CH_CHAR/2)-strlen(pStr))/2,' ',pStr);
 	
 	LCD_ClearLine(LINE(15));													// 清除单行文字 
-	ILI9806G_DispStringLine_EN_CH(LINE(15),dispBuff);	//显示格式化后的字符串
+	NT35510_DispStringLine_EN_CH(LINE(15),dispBuff);	//显示格式化后的字符串
 	
 	
 	pStr = "含英文居中示例ABCDEFG";
@@ -134,7 +134,7 @@ void LCD_Test(void)
 	sprintf(dispBuff,"%*c%s",(LCD_X_LENGTH/(WIDTH_CH_CHAR/2)-strlen(pStr))/2,' ',pStr);
  
 	LCD_ClearLine(LINE(16));												// 清除单行文字 
-	ILI9806G_DispStringLine_EN_CH(LINE(16),dispBuff);//显示格式化后的字符串
+	NT35510_DispStringLine_EN_CH(LINE(16),dispBuff);//显示格式化后的字符串
 	
 	Delay(0x4ffffff);
 }

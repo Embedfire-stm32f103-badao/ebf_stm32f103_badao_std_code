@@ -14,7 +14,7 @@
   ******************************************************************************
   */ 
 
-#include "./lcd/bsp_ili9806g_lcd.h"
+#include "./lcd/bsp_nt35510_lcd.h"
 #include "./font/fonts.h"	
 #include "./dwt_delay/core_delay.h"  
 #include "./usart/bsp_usart.h"

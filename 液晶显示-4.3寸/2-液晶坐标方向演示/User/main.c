@@ -16,7 +16,7 @@
   */ 
  
 #include "stm32f10x.h"
-#include "./lcd/bsp_ili9806g_lcd.h"
+#include "./lcd/bsp_nt35510_lcd.h"
 #include "./usart/bsp_usart.h" 
 #include <stdio.h>
 
@@ -34,7 +34,7 @@ static void LCD_Direction_Show(void);
 int main ( void )
 {
 
-	ILI9806G_Init ();         //LCD 初始化
+	NT35510_Init ();         //LCD 初始化
 
 	USART_Config();		
 	
@@ -64,18 +64,18 @@ void LCD_Direction_Show(void)
 		LCD_SetFont(&Font16x32);
 		LCD_SetColors(RED,BLACK);
 
-		ILI9806G_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* 清屏，显示全黑 */
+		NT35510_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* 清屏，显示全黑 */
 		
 	 //其中0、3、5、6 模式适合从左至右显示文字，
 	 //不推荐使用其它模式显示文字	其它模式显示文字会有镜像效果			
 	 //其中 6 模式为大部分液晶例程的默认显示方向  
-		ILI9806G_GramScan ( i );
+		NT35510_GramScan ( i );
 			
 		sprintf(dispBuff,"o%d. X --->",i);
-		ILI9806G_DispStringLine_EN(LINE(0),dispBuff);//沿X方向显示文字
+		NT35510_DispStringLine_EN(LINE(0),dispBuff);//沿X方向显示文字
 			
 		sprintf(dispBuff,"o%d.Y|V",i);	
-		ILI9806G_DispString_EN_YDir(0,0,dispBuff);//沿Y方向显示文字
+		NT35510_DispString_EN_YDir(0,0,dispBuff);//沿Y方向显示文字
 			
 		Delay(0x9FFFFF);		
 		
@@ -100,87 +100,87 @@ void LCD_Test(void)
 	LCD_SetFont(&Font16x32);
 	LCD_SetColors(RED,BLACK);
 
-  ILI9806G_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* 清屏，显示全黑 */
+  NT35510_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* 清屏，显示全黑 */
 	/********显示字符串示例*******/
-  ILI9806G_DispStringLine_EN(LINE(0),"BH 4.5 inch LCD");
-  ILI9806G_DispStringLine_EN(LINE(2),"resolution:480x854px");
-  ILI9806G_DispStringLine_EN(LINE(3),"LCD driver:ILI9806G");
-  ILI9806G_DispStringLine_EN(LINE(4),"Touch driver:GT5688");
+  NT35510_DispStringLine_EN(LINE(0),"BH 4.3 inch LCD");
+  NT35510_DispStringLine_EN(LINE(2),"resolution:480x854px");
+  NT35510_DispStringLine_EN(LINE(3),"LCD driver:NT35510");
+  NT35510_DispStringLine_EN(LINE(4),"Touch driver:GT5688");
   
 	/********显示变量示例*******/
 	LCD_SetTextColor(GREEN);
 
 	/*使用c标准库把变量转化成字符串*/
 	sprintf(dispBuff,"Count : %d ",testCNT);
-  ILI9806G_ClearLine(LINE(7));	/* 清除单行文字 */
+  NT35510_ClearLine(LINE(7));	/* 清除单行文字 */
 	
 	/*然后显示该字符串即可，其它变量也是这样处理*/
-	ILI9806G_DispStringLine_EN(LINE(7),dispBuff);
+	NT35510_DispStringLine_EN(LINE(7),dispBuff);
 
 	/*******显示图形示例******/
   /* 画直线 */
   
-  ILI9806G_ClearLine(LINE(7));/* 清除单行文字 */
+  NT35510_ClearLine(LINE(7));/* 清除单行文字 */
 	LCD_SetTextColor(BLUE);
 
-  ILI9806G_DispStringLine_EN(LINE(7),"Draw line:");
+  NT35510_DispStringLine_EN(LINE(7),"Draw line:");
   
 	LCD_SetTextColor(RED);
-  ILI9806G_DrawLine(50,270,420,275);  
-  ILI9806G_DrawLine(50,300,420,375);
+  NT35510_DrawLine(50,270,420,275);  
+  NT35510_DrawLine(50,300,420,375);
   
 	LCD_SetTextColor(GREEN);
-  ILI9806G_DrawLine(50,370,420,475);  
-  ILI9806G_DrawLine(50,400,420,475);
+  NT35510_DrawLine(50,370,420,475);  
+  NT35510_DrawLine(50,400,420,475);
 	
 	LCD_SetTextColor(BLUE);
-  ILI9806G_DrawLine(50,420,420,325);  
-  ILI9806G_DrawLine(50,450,420,395);
+  NT35510_DrawLine(50,420,420,325);  
+  NT35510_DrawLine(50,450,420,395);
   
   Delay(0x9FFFFF);
   
-  ILI9806G_Clear(0,32*7,LCD_X_LENGTH,LCD_Y_LENGTH-32*7);	/* 清屏，显示全黑 */
+  NT35510_Clear(0,32*7,LCD_X_LENGTH,LCD_Y_LENGTH-32*7);	/* 清屏，显示全黑 */
   
   
   /*画矩形*/
 
-  ILI9806G_ClearLine(LINE(7));	/* 清除单行文字 */
+  NT35510_ClearLine(LINE(7));	/* 清除单行文字 */
 	LCD_SetTextColor(BLUE);
 
-  ILI9806G_DispStringLine_EN(LINE(7),"Draw Rect:");
+  NT35510_DispStringLine_EN(LINE(7),"Draw Rect:");
 
 	LCD_SetTextColor(RED);
-  ILI9806G_DrawRectangle(50,300,200,100,1);
+  NT35510_DrawRectangle(50,300,200,100,1);
 	
 	LCD_SetTextColor(GREEN);
-  ILI9806G_DrawRectangle(100,300,200,120,0);
+  NT35510_DrawRectangle(100,300,200,120,0);
 	
 	LCD_SetTextColor(BLUE);
-  ILI9806G_DrawRectangle(250,300,200,150,1);
+  NT35510_DrawRectangle(250,300,200,150,1);
   
   
   Delay(0x9FFFFF);
 	
-	ILI9806G_Clear(0,32*7,LCD_X_LENGTH,LCD_Y_LENGTH-32*7);	/* 清屏，显示全黑 */
+	NT35510_Clear(0,32*7,LCD_X_LENGTH,LCD_Y_LENGTH-32*7);	/* 清屏，显示全黑 */
 
   /* 画圆 */
-  ILI9806G_ClearLine(LINE(7));	/* 清除单行文字 */
+  NT35510_ClearLine(LINE(7));	/* 清除单行文字 */
 	LCD_SetTextColor(BLUE);
 	
-  ILI9806G_DispStringLine_EN(LINE(7),"Draw Cir:");
+  NT35510_DispStringLine_EN(LINE(7),"Draw Cir:");
 
 	LCD_SetTextColor(RED);
-	ILI9806G_DrawCircle(150,400,60,1);
+	NT35510_DrawCircle(150,400,60,1);
 
 	LCD_SetTextColor(GREEN);
-	ILI9806G_DrawCircle(250,400,60,0);
+	NT35510_DrawCircle(250,400,60,0);
 
 	LCD_SetTextColor(BLUE);
-	ILI9806G_DrawCircle(350,400,60,1);
+	NT35510_DrawCircle(350,400,60,1);
 
   Delay(0x9FFFFF);
   
-  ILI9806G_Clear(0,32*7,LCD_X_LENGTH,LCD_Y_LENGTH-32*7);	/* 清屏，显示全黑 */
+  NT35510_Clear(0,32*7,LCD_X_LENGTH,LCD_Y_LENGTH-32*7);	/* 清屏，显示全黑 */
 
 }
 

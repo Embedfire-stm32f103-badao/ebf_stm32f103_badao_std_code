@@ -563,9 +563,14 @@
               <FilePath>..\..\User\font\fonts.c</FilePath>
             </File>
             <File>
-              <FileName>bsp_ili9806g_lcd.c</FileName>
+              <FileName>core_delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\User\lcd\bsp_ili9806g_lcd.c</FilePath>
+              <FilePath>..\..\User\dwt_delay\core_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_nt35510_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\lcd\bsp_nt35510_lcd.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -219,7 +219,8 @@ static void i2c_Delay(void)
 		循环次数为30时，SCL频率 = 533KHz，  
 	 	循环次数为20时，SCL频率 = 727KHz， 
   */
-	for (i = 0; i < 50*2; i++);
+	for (i = 0; i < 50*5; i++);
+//  Delay_us(40);
 }
 
 /*
@@ -491,7 +492,7 @@ uint32_t I2C_WriteBytes(uint8_t ClientAddr,uint8_t* pBuffer,  uint8_t NumByteToW
   {
   /* 第4步：开始写入数据 */
   i2c_SendByte(*pBuffer);
-
+//printf(" 0x%x\r\n", *pBuffer);
   /* 第5步：检查ACK */
   if (i2c_WaitAck() != 0)
   {

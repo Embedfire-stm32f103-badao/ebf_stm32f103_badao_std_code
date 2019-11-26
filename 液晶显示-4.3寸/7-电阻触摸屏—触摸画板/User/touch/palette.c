@@ -33,7 +33,7 @@ static void Command_Select_Color(void *btn);
 static void Command_Select_Brush(void *btn);
 static void Command_Clear_Palette(void *btn);
 
-static void ILI9806G_DrawLineCircle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2,uint8_t thick );
+static void NT35510_DrawLineCircle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2,uint8_t thick );
 
 
 
@@ -47,11 +47,11 @@ void Palette_Init(uint8_t LCD_Mode)
   
   uint8_t i;
 	
-	ILI9806G_GramScan ( LCD_Mode );
+	NT35510_GramScan ( LCD_Mode );
 
   /* 整屏清为白色 */
 	LCD_SetBackColor(CL_WHITE);
-  ILI9806G_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	
+  NT35510_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	
 
   
   /* 初始化按钮 */
@@ -338,7 +338,7 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
             }
             else //继续上一次的笔迹
             {      
-              ILI9806G_DrawLine(pre_x,pre_y,x,y);
+              NT35510_DrawLine(pre_x,pre_y,x,y);
             } 
         
         break;
@@ -349,7 +349,7 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
 					break;
 
         /* 描绘2像素宽度的轨迹线 */
-        ILI9806G_DrawLineCircle(pre_x,pre_y,x,y,1);
+        NT35510_DrawLineCircle(pre_x,pre_y,x,y,1);
         
         break;
       
@@ -358,7 +358,7 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
 				if(x-2<PALETTE_START_X||pre_x-2<PALETTE_START_X)	//画板左边界
 					break;
         
-            ILI9806G_DrawLineCircle(pre_x,pre_y,x,y,2);
+            NT35510_DrawLineCircle(pre_x,pre_y,x,y,2);
 
         break;
       
@@ -367,7 +367,7 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
 				if(x-3<PALETTE_START_X||pre_x-3<PALETTE_START_X)	//画板左边界
 					break;
       
-        ILI9806G_DrawLineCircle(pre_x,pre_y,x,y,3);
+        NT35510_DrawLineCircle(pre_x,pre_y,x,y,3);
         
         break;
       
@@ -376,7 +376,7 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
 				if(x-4<PALETTE_START_X||pre_x-4<PALETTE_START_X)	//画板左边界
 					break;
         
-            ILI9806G_DrawLineCircle(pre_x,pre_y,x,y,4);
+            NT35510_DrawLineCircle(pre_x,pre_y,x,y,4);
 
         break;
       
@@ -385,7 +385,7 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
 		 		if(x-8<PALETTE_START_X||pre_x-8<PALETTE_START_X)	//画板左边界
 					break;
         
-            ILI9806G_DrawLineCircle(pre_x,pre_y,x,y,8);
+            NT35510_DrawLineCircle(pre_x,pre_y,x,y,8);
 
         break;
             
@@ -394,7 +394,7 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
 				if(x-10<PALETTE_START_X ||pre_x-10<PALETTE_START_X)	//画板左边界
 					break;
         
-            ILI9806G_DrawLineCircle(pre_x,pre_y,x,y,10);
+            NT35510_DrawLineCircle(pre_x,pre_y,x,y,10);
 
         break;
       
@@ -410,8 +410,8 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
             }
             else //继续上一次的笔迹
             {      
-              ILI9806G_DrawLine(pre_x,pre_y,x,y);
-              ILI9806G_DrawCircle(x,y,3,1);
+              NT35510_DrawLine(pre_x,pre_y,x,y);
+              NT35510_DrawCircle(x,y,3,1);
             } 
         
         break;
@@ -428,7 +428,7 @@ void Draw_Trail(int16_t pre_x,int16_t pre_y,int16_t x,int16_t y,Brush_Style* bru
         {
 						LCD_SetColors(CL_WHITE,CL_WHITE);
             
-						ILI9806G_DrawRectangle( x-40/2,
+						NT35510_DrawRectangle( x-40/2,
                                 y-40/2,
                                 40,
                                 40,1);   
@@ -460,7 +460,7 @@ static void Draw_Color_Button(void *btn)
   {
 		/*背景为功能键相应的颜色*/
 		LCD_SetColors(ptr->para,CL_WHITE);
-    ILI9806G_DrawRectangle(ptr->start_x,
+    NT35510_DrawRectangle(ptr->start_x,
                       ptr->start_y,
                       ptr->end_x - ptr->start_x,
 											ptr->end_y - ptr->start_y,1);
@@ -469,14 +469,14 @@ static void Draw_Color_Button(void *btn)
   {
     /*白色背景*/
 		LCD_SetColors(CL_WHITE,CL_WHITE);
-    ILI9806G_DrawRectangle(ptr->start_x,
+    NT35510_DrawRectangle(ptr->start_x,
                       ptr->start_y,
                       ptr->end_x - ptr->start_x,
 											ptr->end_y - ptr->start_y,1);
   } 
     /*按钮边框*/
 		LCD_SetColors(CL_BLUE4,CL_WHITE);
-    ILI9806G_DrawRectangle(ptr->start_x,
+    NT35510_DrawRectangle(ptr->start_x,
 									ptr->start_y,
 									ptr->end_x - ptr->start_x,
 									ptr->end_y - ptr->start_y,0);
@@ -498,7 +498,7 @@ static void Draw_Clear_Button(void *btn)
   {
 	
 		LCD_SetColors(CL_BUTTON_GREY,CL_WHITE);
-    ILI9806G_DrawRectangle(ptr->start_x,
+    NT35510_DrawRectangle(ptr->start_x,
                       ptr->start_y,
                       ptr->end_x - ptr->start_x,
 											ptr->end_y - ptr->start_y,1);
@@ -511,15 +511,15 @@ static void Draw_Clear_Button(void *btn)
 		/*这个函数只对英文字体起作用*/
 		LCD_SetFont(&Font16x32);
 		
-		ILI9806G_DispString_EN_CH( ptr->start_x + (ptr->end_x - ptr->start_x - 32*2 )/2,
-														ptr->start_y+ ((ptr->end_y - ptr->start_y-32)/2),	
-														"清屏");
+//		NT35510_DispString_EN_CH( ptr->start_x + (ptr->end_x - ptr->start_x - 32*2 )/2,
+//														ptr->start_y+ ((ptr->end_y - ptr->start_y-32)/2),	
+//														"清屏");
   }
   else  /*按键按下*/
   {
 		
 		LCD_SetColors(CL_WHITE,CL_WHITE);
-    ILI9806G_DrawRectangle(ptr->start_x,
+    NT35510_DrawRectangle(ptr->start_x,
                       ptr->start_y,
                       ptr->end_x - ptr->start_x,
 											ptr->end_y - ptr->start_y,1);
@@ -530,14 +530,14 @@ static void Draw_Clear_Button(void *btn)
 		*中文字体大小是32*32的，需要其它字体请自行制作字模*/
 		/*这个函数只对英文字体起作用*/
 		LCD_SetFont(&Font16x32);
-    ILI9806G_DispString_EN_CH( ptr->start_x + (ptr->end_x - ptr->start_x - 32*2 )/2,          
-																ptr->start_y+ ((ptr->end_y - ptr->start_y-32)/2),	
-																"清屏");
+//    NT35510_DispString_EN_CH( ptr->start_x + (ptr->end_x - ptr->start_x - 32*2 )/2,          
+//																ptr->start_y+ ((ptr->end_y - ptr->start_y-32)/2),	
+//																"清屏");
   } 
   
      /*按钮边框*/
 		LCD_SetColors(CL_BLUE4,CL_WHITE);
-    ILI9806G_DrawRectangle(ptr->start_x,
+    NT35510_DrawRectangle(ptr->start_x,
 										ptr->start_y,
 										ptr->end_x - ptr->start_x,
 										ptr->end_y - ptr->start_y,0);
@@ -560,7 +560,7 @@ static void Draw_Shape_Button(void *btn)
     {
 			
 			LCD_SetColors(CL_BUTTON_GREY,CL_WHITE);
-			ILI9806G_DrawRectangle(ptr->start_x,
+			NT35510_DrawRectangle(ptr->start_x,
                       ptr->start_y,
                       ptr->end_x - ptr->start_x,
 											ptr->end_y - ptr->start_y,1);
@@ -568,7 +568,7 @@ static void Draw_Shape_Button(void *btn)
 
 			 /*显示文字时的背景颜色*/     
 			LCD_SetColors(CL_BLUE4,CL_BUTTON_GREY);
-			ILI9806G_DrawRectangle(ptr->start_x,
+			NT35510_DrawRectangle(ptr->start_x,
 										ptr->start_y,
 										ptr->end_x - ptr->start_x,
 										ptr->end_y - ptr->start_y,0);
@@ -578,7 +578,7 @@ static void Draw_Shape_Button(void *btn)
     {
 
 			LCD_SetColors(CL_WHITE,CL_WHITE);
-			ILI9806G_DrawRectangle(ptr->start_x,
+			NT35510_DrawRectangle(ptr->start_x,
                       ptr->start_y,
                       ptr->end_x - ptr->start_x,
 											ptr->end_y - ptr->start_y,1);
@@ -586,7 +586,7 @@ static void Draw_Shape_Button(void *btn)
 
 			 /*显示文字时的背景颜色*/     
 			LCD_SetColors(CL_BLUE4,CL_WHITE);
-			ILI9806G_DrawRectangle(ptr->start_x,
+			NT35510_DrawRectangle(ptr->start_x,
 										ptr->start_y,
 										ptr->end_x - ptr->start_x,
 										ptr->end_y - ptr->start_y,0);
@@ -600,7 +600,7 @@ static void Draw_Shape_Button(void *btn)
     case LINE_SINGLE_PIXCEL:      
      		
 				LCD_SetColors(CL_BLACK,CL_WHITE);
-        ILI9806G_DrawLine(ptr->start_x+20,
+        NT35510_DrawLine(ptr->start_x+20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                           ptr->end_x-20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2);
@@ -610,7 +610,7 @@ static void Draw_Shape_Button(void *btn)
       
     case LINE_2_PIXCEL:
         
-        ILI9806G_DrawLineCircle(ptr->start_x+20,
+        NT35510_DrawLineCircle(ptr->start_x+20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,ptr->end_x-20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                           1);
@@ -620,7 +620,7 @@ static void Draw_Shape_Button(void *btn)
         
     case LINE_4_PIXCEL:
    
-            ILI9806G_DrawLineCircle(ptr->start_x+20,
+            NT35510_DrawLineCircle(ptr->start_x+20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,ptr->end_x-20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                           2);
@@ -630,7 +630,7 @@ static void Draw_Shape_Button(void *btn)
     
         case LINE_6_PIXCEL:
         
-        ILI9806G_DrawLineCircle(ptr->start_x+20,
+        NT35510_DrawLineCircle(ptr->start_x+20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,ptr->end_x-20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                           3);
@@ -640,7 +640,7 @@ static void Draw_Shape_Button(void *btn)
         
      case LINE_8_PIXCEL:
    
-            ILI9806G_DrawLineCircle(ptr->start_x+20,
+            NT35510_DrawLineCircle(ptr->start_x+20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,ptr->end_x-20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                           4);
@@ -650,7 +650,7 @@ static void Draw_Shape_Button(void *btn)
     
        case LINE_16_PIXCEL:
    
-            ILI9806G_DrawLineCircle(ptr->start_x+20,
+            NT35510_DrawLineCircle(ptr->start_x+20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,ptr->end_x-20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                           8 );
@@ -660,7 +660,7 @@ static void Draw_Shape_Button(void *btn)
         
        case LINE_20_PIXCEL:
    
-            ILI9806G_DrawLineCircle(ptr->start_x+20,
+            NT35510_DrawLineCircle(ptr->start_x+20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,ptr->end_x-20,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                           10);
@@ -672,7 +672,7 @@ static void Draw_Shape_Button(void *btn)
     
      case LINE_WITH_CIRCLE: 
         LCD_SetColors(CL_BLACK,CL_WHITE);      
-        ILI9806G_DrawLine(ptr->start_x+5,
+        NT35510_DrawLine(ptr->start_x+5,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                           ptr->end_x-5,
                           ptr->start_y+(ptr->end_y-ptr->start_y)/2);
@@ -681,7 +681,7 @@ static void Draw_Shape_Button(void *btn)
         for(i=0;i<((ptr->end_x - ptr->start_x-10)/10);i++)
         {
         
-        ILI9806G_DrawCircle(ptr->start_x+5+i*10,
+        NT35510_DrawCircle(ptr->start_x+5+i*10,
                             ptr->start_y+(ptr->end_y-ptr->start_y)/2,
                             3,1);
         
@@ -694,7 +694,7 @@ static void Draw_Shape_Button(void *btn)
       
     case RUBBER:
 			LCD_SetColors(CL_WHITE,CL_BLACK);
-       ILI9806G_DrawRectangle( ptr->start_x+((ptr->end_x - ptr->start_x -40)/2),
+       NT35510_DrawRectangle( ptr->start_x+((ptr->end_x - ptr->start_x -40)/2),
                           ptr->start_y+ ((ptr->end_y - ptr->start_y-40 -30)/2),
                           40,
                           40 ,1);   
@@ -706,9 +706,9 @@ static void Draw_Shape_Button(void *btn)
 		*中文字体大小是32*32的，需要其它字体请自行制作字模*/
 		/*这个函数只对英文字体起作用*/
 		LCD_SetFont(&Font16x32);
-    ILI9806G_DispString_EN_CH( ptr->start_x+(ptr->end_x - ptr->start_x -32*2)/2,
-																ptr->start_y+ ((ptr->end_y - ptr->start_y-32 -16)/2)+32,		
-																"橡皮");
+//    NT35510_DispString_EN_CH( ptr->start_x+(ptr->end_x - ptr->start_x -32*2)/2,
+//																ptr->start_y+ ((ptr->end_y - ptr->start_y-32 -16)/2)+32,		
+//																"橡皮");
 		
 
     break;
@@ -756,7 +756,7 @@ static void Command_Select_Brush(void *btn)
 static void Command_Clear_Palette(void *btn)
 {
 		LCD_SetColors(CL_WHITE,CL_WHITE);
-    ILI9806G_DrawRectangle(PALETTE_START_X,
+    NT35510_DrawRectangle(PALETTE_START_X,
                       PALETTE_START_Y,                    
                       PALETTE_END_X-(PALETTE_START_X+1), 
 											PALETTE_END_Y-PALETTE_START_Y ,1);
@@ -775,7 +775,7 @@ static void Command_Clear_Palette(void *btn)
   * @param  y2: specifies the point 2 y position.
   * @retval None
   */
-static void ILI9806G_DrawLineCircle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2,uint8_t thick )
+static void NT35510_DrawLineCircle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2,uint8_t thick )
 {
   int16_t deltax = 0, deltay = 0, x = 0, y = 0, xinc1 = 0, xinc2 = 0, 
   yinc1 = 0, yinc2 = 0, den = 0, num = 0, numadd = 0, numpixels = 0, 
@@ -836,8 +836,8 @@ static void ILI9806G_DrawLineCircle(uint16_t x1, uint16_t y1, uint16_t x2, uint1
 			y+thick>LCD_Y_LENGTH || y-thick<0  ) //液晶上下边界
 			continue;
 
-    ILI9806G_DrawRectangle(x,y,thick<<1,thick<<1,1);
-//    ILI9806G_DrawCircle(x,y,thick,1);             /* Draw the current pixel */
+    NT35510_DrawRectangle(x,y,thick<<1,thick<<1,1);
+//    NT35510_DrawCircle(x,y,thick,1);             /* Draw the current pixel */
     num += numadd;              /* Increase the numerator by the top of the fraction */
     if (num >= den)             /* Check if numerator >= denominator */
     {

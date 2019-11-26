@@ -626,8 +626,20 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\User\lcd\bsp_ili9806g_lcd.c</PathWithFileName>
-      <FilenameWithoutPath>bsp_ili9806g_lcd.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\User\lcd\bsp_nt35510_lcd.c</PathWithFileName>
+      <FilenameWithoutPath>bsp_nt35510_lcd.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>4</GroupNumber>
+      <FileNumber>36</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\User\dwt_delay\core_delay.c</PathWithFileName>
+      <FilenameWithoutPath>core_delay.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -641,7 +653,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>5</GroupNumber>
-      <FileNumber>36</FileNumber>
+      <FileNumber>37</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
