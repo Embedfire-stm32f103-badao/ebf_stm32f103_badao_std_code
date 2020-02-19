@@ -21,6 +21,7 @@ extern sFONT Font24x32;
 extern sFONT Font16x24;
 extern sFONT Font8x16;
 
+
 /*******************中文********** 在显示屏上显示的字符大小 ***************************/
 #define      WIDTH_CH_CHAR		                16	    //中文字符宽度 
 #define      HEIGHT_CH_CHAR		              	16		  //中文字符高度 
@@ -35,17 +36,15 @@ extern sFONT Font8x16;
 
 
 
-
 //0表示使用SD卡字模，非零表示FLASH字模,由于SD卡字模有文件系统，速度慢很多。
 
 #define GBKCODE_FLASH 						1
 
 #if GBKCODE_FLASH
 	/*使用FLASH字模*/
-	/*中文字库存储在FLASH的起始地址*/
+	/*中文字库存储在FLASH的文件名*/
 	/*FLASH*/
-	#define GBKCODE_START_ADDRESS   387*4096
-
+  #define GBKCODE_FILE_NAME       "GB2312_H1616.FON"
 
 	/*获取字库的函数*/
 	//定义获取中文字符字模数组的函数名，ucBuffer为存放字模数组名，usChar为中文字符（国标码）
