@@ -170,8 +170,9 @@ void I2C_ResetChip(void)
     GPIO_ResetBits (GTP_INT_GPIO_PORT,GTP_INT_GPIO_PIN);
 	  /*复位为低电平，为初始化做准备*/
 	  GPIO_ResetBits (GTP_RST_GPIO_PORT,GTP_RST_GPIO_PIN);
-	  Delay_us(200);
-    Delay(1);
+//	  Delay_us(200);
+//    Delay(1);
+  Delay_ms(20);
 
 	  /*拉高一段时间，进行初始化*/
 	  GPIO_SetBits (GTP_RST_GPIO_PORT,GTP_RST_GPIO_PIN);
@@ -219,7 +220,7 @@ static void i2c_Delay(void)
 		循环次数为30时，SCL频率 = 533KHz，  
 	 	循环次数为20时，SCL频率 = 727KHz， 
   */
-	for (i = 0; i < 50*5; i++);
+	for (i = 0; i < 50; i++);
 //  Delay_us(40);
 }
 
@@ -422,15 +423,15 @@ uint32_t I2C_ReadBytes(uint8_t ClientAddr,uint8_t* pBuffer, uint16_t NumByteToRe
 
 	while(NumByteToRead) 
   {
-   if(NumByteToRead == 1)
+    *pBuffer = i2c_ReadByte();
+    
+    if(NumByteToRead == 1)
     {
 			i2c_NAck();	/* 最后1个字节读完后，CPU产生NACK信号(驱动SDA = 1) */
       
       /* 发送I2C总线停止信号 */
       i2c_Stop();
     }
-    
-   *pBuffer = i2c_ReadByte();
     
     /* 读指针自增 */
     pBuffer++; 
@@ -490,14 +491,14 @@ uint32_t I2C_WriteBytes(uint8_t ClientAddr,uint8_t* pBuffer,  uint8_t NumByteToW
 	
   while(NumByteToWrite--)
   {
-  /* 第4步：开始写入数据 */
-  i2c_SendByte(*pBuffer);
-//printf(" 0x%x\r\n", *pBuffer);
-  /* 第5步：检查ACK */
-  if (i2c_WaitAck() != 0)
-  {
-    goto cmd_fail;	/* 器件无应答 */
-  }
+    /* 第4步：开始写入数据 */
+    i2c_SendByte(*pBuffer);
+  //printf(" 0x%x\r\n", *pBuffer);
+    /* 第5步：检查ACK */
+    if (i2c_WaitAck() != 0)
+    {
+      goto cmd_fail;	/* 器件无应答 */
+    }
   
       pBuffer++;	/* 地址增1 */		
   }
