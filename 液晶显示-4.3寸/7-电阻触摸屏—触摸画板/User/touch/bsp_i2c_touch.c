@@ -16,7 +16,6 @@
   */ 
 
 #include "./touch/bsp_i2c_touch.h"
-#include "./touch/gt5xx.h"
 #include "./dwt_delay/core_delay.h"   
 #include "./usart/bsp_usart.h"
 
@@ -172,11 +171,11 @@ void I2C_ResetChip(void)
 	  GPIO_ResetBits (GTP_RST_GPIO_PORT,GTP_RST_GPIO_PIN);
 //	  Delay_us(200);
 //    Delay(1);
-  Delay_ms(20);
+    Delay_ms(1);
 
 	  /*拉高一段时间，进行初始化*/
 	  GPIO_SetBits (GTP_RST_GPIO_PORT,GTP_RST_GPIO_PIN);
-	  Delay_ms(20);
+	  Delay_ms(55);
 
 	  /*把INT引脚设置为浮空输入模式，以便接收触摸中断信号*/
 	  GPIO_InitStructure.GPIO_Pin = GTP_INT_GPIO_PIN;

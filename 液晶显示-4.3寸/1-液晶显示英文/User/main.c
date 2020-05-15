@@ -46,7 +46,16 @@ int main ( void )
   NT35510_GramScan ( 6 );
 	while ( 1 )
 	{
-		LCD_Test();
+    LCD_SetColors(RED,RED);
+    NT35510_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* «Â∆¡ */
+    Delay(0x5FFFFF);
+    LCD_SetColors(RED,GREEN);
+    NT35510_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* «Â∆¡ */
+    Delay(0x5FFFFF);
+    LCD_SetColors(RED,BLUE);
+    NT35510_Clear(0,0,LCD_X_LENGTH,LCD_Y_LENGTH);	/* «Â∆¡ */
+    Delay(0x5FFFFF);
+//		LCD_Test();
 	}
 }
 

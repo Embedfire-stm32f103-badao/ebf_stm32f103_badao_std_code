@@ -15,8 +15,8 @@
  * 
  */
 
-#ifndef _GOODIX_GT9XX_H
-#define _GOODIX_GT9XX_H
+#ifndef _GOODIX_GTXX_H
+#define _GOODIX_GTXX_H
 
 #include "stm32f10x.h"
 
@@ -24,6 +24,10 @@
   #define NULL        0
 #endif
 
+#define LCD_PIXEL_HEIGHT    NT35510_LESS_PIXEL
+#define LCD_PIXEL_WIDTH     NT35510_MORE_PIXEL
+
+#define UPDATE_CONFIG    1    // 1 ：更新配置    0 ：不更新配置
 
 /*flags的可取值，注释掉的在本工程没有用到*/
 //#define I2C_M_TEN		0x0010	/* 表示这是个10位地址 */
@@ -50,20 +54,34 @@ struct i2c_msg {
 };
 
 
+
+/** 
+  * @brief 触摸屏参数
+  */
+typedef struct
+{
+  /*根据触摸屏类型配置*/
+  uint16_t max_width;  //触点最大值,高
+  uint16_t max_height;  //触点最大值，宽
+
+  uint16_t config_reg_addr;  	//不同类型的触摸ic配置寄存器地址不同
+
+}TOUCH_PARAM_TypeDef;
+
+/** 
+  * @brief  触摸屏类型
+  */ 
 typedef enum 
 {
-	GT9157=0,
-	GT911=1,
-  GT5688=2,
-  GT9147=3,
+	GT917S=0,
 }TOUCH_IC;
 
-
-
+extern TOUCH_IC touchIC;
+extern const TOUCH_PARAM_TypeDef touch_param[];
 
 // STEP_3(optional): Specify your special config info if needed
-#define GTP_MAX_HEIGHT   480
-#define GTP_MAX_WIDTH    854
+#define GTP_MAX_HEIGHT   touch_param[touchIC].max_height
+#define GTP_MAX_WIDTH    touch_param[touchIC].max_width
 #define GTP_INT_TRIGGER  0
 #define GTP_MAX_TOUCH         5
 
@@ -82,13 +100,13 @@ typedef enum
 #define SWITCH_ON             1
 
 //******************** For GT9XXF Start **********************//
-#define GTP_REG_BAK_REF                 0x99EC
+#define GTP_REG_BAK_REF                 0x99D0
 #define GTP_REG_MAIN_CLK                0x8020
 #define GTP_REG_CHIP_TYPE               0x8000
-#define GTP_REG_HAVE_KEY                0x8057
+#define GTP_REG_HAVE_KEY                0x804E
 #define GTP_REG_MATRIX_DRVNUM           0x8069     
 #define GTP_REG_MATRIX_SENNUM           0x806A
-#define GTP_REG_COMMAND				    0x8040
+#define GTP_REG_COMMAND				0x8040
 
 #define GTP_COMMAND_READSTATUS	    0
 #define GTP_COMMAND_DIFFERENCE	    1
@@ -126,13 +144,12 @@ typedef enum
 #define GTP_READ_COOR_ADDR    0x814E
 #define GTP_REG_SLEEP         0x8040
 #define GTP_REG_SENSOR_ID     0x814A
-#define GTP_REG_CONFIG_DATA   0x8047
+#define GTP_REG_CONFIG_DATA   touch_param[touchIC].config_reg_addr
 #define GTP_REG_VERSION       0x8140
 
 #define RESOLUTION_LOC        3
 #define TRIGGER_LOC           8
 #define X2Y_LOC        				(1<<3)
-
 
 #define CFG_GROUP_LEN(p_cfg_grp)  (sizeof(p_cfg_grp) / sizeof(p_cfg_grp[0]))
 	
@@ -140,7 +157,7 @@ typedef enum
 //***************************PART1:ON/OFF define*******************************
 
 #define GTP_DEBUG_ON         	1
-#define GTP_DEBUG_ARRAY_ON    0
+#define GTP_DEBUG_ARRAY_ON    1
 #define GTP_DEBUG_FUNC_ON   	0
 // Log define
 #define GTP_INFO(fmt,arg...)           printf("<<-GTP-INFO->> "fmt"\n",##arg)
@@ -188,5 +205,6 @@ void GTP_IRQ_Disable(void);
 void GTP_IRQ_Enable(void);
 int32_t GTP_Init_Panel(void);
 int8_t GTP_Send_Command(uint8_t command);
+int	GTP_Execu( int *x,int *y);                                       
 
 #endif /* _GOODIX_GT9XX_H_ */

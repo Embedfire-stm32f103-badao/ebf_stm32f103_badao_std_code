@@ -16,8 +16,7 @@
   */
 
 #include "./touch/palette.h"
-#include "./touch/gt5xx.h"
-#include "./lcd/bsp_ili9806g_lcd.h"
+#include "./lcd/bsp_nt35510_lcd.h"
  
 /*按钮结构体数组*/
 Touch_Button button[BUTTON_NUM];

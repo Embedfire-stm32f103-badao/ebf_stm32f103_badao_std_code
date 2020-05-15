@@ -19,10 +19,9 @@
 #include "./usart/bsp_usart.h"
 #include "./led/bsp_led.h"  
 #include "./lcd/bsp_nt35510_lcd.h"
-#include "./touch/gt9xx.h"
 #include "./dwt_delay/core_delay.h"   
 #include "./touch/palette.h"
-
+#include "./touch/gt9xx.h"
 
 
 /**

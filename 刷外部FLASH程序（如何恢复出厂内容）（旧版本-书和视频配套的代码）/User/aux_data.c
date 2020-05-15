@@ -78,7 +78,7 @@ Aux_Data_Typedef  burn_data[] =
    [AUX_GB2312_32_32] = 
   {
     .filename           =   "0:/srcdata/GB2312_H3232.FON",
-    .description        =   "GB2312×Ö¿â£¨4.5´çÓÃ£©",
+    .description        =   "GB2312×Ö¿â£¨4.5´ç¡¢4.3´çÓÃ£©",
     .start_addr         =   512*4096 ,
     .length             =   256*4096, 
     .burn_option      =  UPDATE,
