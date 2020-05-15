@@ -34,10 +34,10 @@
 
 // 电容按键被按下的时候门限值，需要根据不同的硬件实际测试，
 // 减小这个门限值可以提高响应速度
-#define            TPAD_GATE_VAL              100
-// 电容按键空载的时候的最大和最小的充电时间，不同的硬件不一样，霸道稳定在218
-#define            TPAD_DEFAULT_VAL_MIN       210
-#define            TPAD_DEFAULT_VAL_MAX       230
+#define            TPAD_GATE_VAL              40
+// 电容按键空载的时候的最大和最小的充电时间，不同的硬件不一样
+#define            TPAD_DEFAULT_VAL_MIN       75
+#define            TPAD_DEFAULT_VAL_MAX       200
 
 #define            TPAD_ON                     1
 #define            TPAD_OFF                    0
