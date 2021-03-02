@@ -51,7 +51,7 @@ int main(void)
 	while(1)
 	{
 		// 测试歌曲放在SD卡根目录下
-		vs1053_player_song("0:Moves Like Jagger.mp3");
+		vs1053_player_song("0:TestFile.mp3");
 		printf("MusicPlay End\n");
 	}
 	
