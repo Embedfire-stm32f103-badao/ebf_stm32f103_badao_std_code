@@ -34,8 +34,8 @@
 
 bsp_led.h  （其中，bsp为Board Support Packet （板级支持包）的缩写）
 
-	1.宏定义LED灯对应的GPIO端口，GPIO时钟，GPIO引脚。
-	2.把LED的常用状态（亮、灭、状态反转）也直接定义成宏。
+	1.宏定义LED灯对应的GPIO端口，GPIO时钟，GPIO引脚
+	2.把LED的常用状态（亮、灭、状态反转）也直接定义成宏
 	3.把控制R、G、B灯的不同开关状态混出不同的颜色对应的状态定义成宏
 
 bsp_led.c   <——>  LED GPIO初始化
@@ -48,7 +48,7 @@ bsp_led.c   <——>  LED GPIO初始化
 
 main.c
 
-	1.调用初始化LED GPIO函数
+	1.调用LED GPIO初始化函数，初始化LED端口
 	2.控制LED的亮灭
 
 
