@@ -27,9 +27,9 @@ MCO输出引脚：
 
 【*】程序描述：
 
-bsp_clkconfig.c
+< bsp_clkconfig.c >
 
-   使用HSE配置系统时钟(形参pllmul为PLL的倍频因子)
+- 使用HSE配置系统时钟(形参pllmul为PLL的倍频因子)
 
 	1.初始化复位与时钟控制（RCC）
 	2.使能HSE，等待它变稳定，不稳定则开启HSE失败，或HSE发生故障了
@@ -40,7 +40,7 @@ bsp_clkconfig.c
 	7.把PLLCLK切换为系统时钟SYSCLK
 	8.确定系统时钟切换成功
 
-   使用HSI配置系统时钟(形数pllmul为PLL的倍频因子)
+- 使用HSI配置系统时钟(形数pllmul为PLL的倍频因子)
 
 	1.初始化复位与时钟控制（RCC）
 	2.使能HSI，等待它变稳定，不稳定则开启HSI失败，或HSI发生故障了
@@ -52,19 +52,23 @@ bsp_clkconfig.c
 	8.确定系统时钟切换成功
 
 
-	*其中，设置HSE和设置HSI是相同的流程，它们的原理是一样的
-	*只是使用HSI时最大的系统时钟就只能是64MHz，而使用HSE能超频到128MHz（慎用超频）
+	* 其中，设置HSE和设置HSI是相同的流程，它们的原理是一样的
+	* 只是使用HSI时最大的系统时钟就只能是64MHz，而使用HSE能超频到128MHz（慎用超频）
 
 
 
-bsp_mcooutput.c    <------->初始化MCO引脚PA8
+< bsp_mcooutput.c >
+
+- 初始化MCO引脚PA8
 
 	1.引用结构体
 	2.开启GPIO对应的时钟
 	3.设置引脚、模式、速度
 	4.初始化GPIO（根据设定参数配置 GPIO）
 
-main.c 
+
+
+< main.c  >
 
 	1.调用HSI配置系统时钟函数，此时系统时钟的来源为HSI
 	1.调用初始化MCO引脚函数，然后设置MCO引脚输出系统时钟
@@ -77,14 +81,13 @@ PS：在配套的main函数中，HSE配置系统时钟函数被注释掉了，�
 
 
 
-
-
-
 /*********************************************************************************************/
 
 【*】 联系我们
 
--野火论坛    :http://www.firebbs.cn
--淘宝店铺    :https://yehuosm.tmall.com/
+-野火官网  :https://embedfire.com
+-野火论坛  :http://www.firebbs.cn
+-野火商城  :https://yehuosm.tmall.com/
+-野火资料下载中心：http://doc.embedfire.com/products/link
 
 /*********************************************************************************************/

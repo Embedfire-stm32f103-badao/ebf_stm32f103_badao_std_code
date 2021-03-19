@@ -42,7 +42,7 @@ LED灯：
 
 【*】程序描述：
 
-bsp_exti.h
+< bsp_exti.h >
 
 	1.宏定义按键对应的GPIO端口、GPIO时钟、GPIO引脚
 	2.宏定义EXTI中断事件线输入源的AFIO 时钟、端口、引脚，
@@ -51,10 +51,9 @@ bsp_exti.h
 
 
 
-bsp_exti.c
+< bsp_exti.c >
 
-
-   配置NVIC（中断配置固件库）
+- 配置NVIC（中断配置固件库）
 
 	1.引用结构体
 	2.配置NVIC的优先级分组
@@ -62,8 +61,7 @@ bsp_exti.c
 	4.使能中断通道
 	5.初始化NVIC
 
-
-   配置EXTI
+- 配置EXTI
 
 	1.引用GPIO和EXTI结构体
 	2.开启GPIO和APIO时钟（已在对应头文件引入）
@@ -75,7 +73,7 @@ bsp_exti.c
 
 
 
-stm32f10x_it.c           --------这里是为了方便管理，统一存放我们的中断服务函数的文件--------
+< stm32f10x_it.c >           --------这里是为了方便管理，统一存放我们的中断服务函数的文件--------
 
 
 	1.获取 EXTI 的中断标志位状态，若发生中断则转变LED灯当前状态
@@ -85,7 +83,7 @@ stm32f10x_it.c           --------这里是为了方便管理，统一存放我�
 
 
 
-main.c 
+< main.c >
 
 	1.初始化LED端口
 	2.调用我们的按键EXTI配置函数
@@ -99,7 +97,9 @@ main.c
 
 【*】 联系我们
 
--野火论坛    :http://www.firebbs.cn
--淘宝店铺    :https://yehuosm.tmall.com/
+-野火官网  :https://embedfire.com
+-野火论坛  :http://www.firebbs.cn
+-野火商城  :https://yehuosm.tmall.com/
+-野火资料下载中心：http://doc.embedfire.com/products/link
 
 /*********************************************************************************************/

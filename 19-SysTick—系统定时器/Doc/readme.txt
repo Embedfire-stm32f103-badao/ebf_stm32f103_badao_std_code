@@ -29,12 +29,11 @@
 【*】程序描述：
 
 
-bsp_SysTick.c
+< bsp_SysTick.c >
 
 	1.初始化 SysTick_Config()，设定它的形参用以决定系统定时器发生中断的时间
 	2.设定定时时间，利用中断次数*中断时间=定时时间编写定时函数
 	3.编写中断服务函数，SysTick 每进一次中断， 之前设定好的中断次数就递减一次
-
 
 
 * 中断时间的计算公式：TINT=VALUELOAD * TDEC= VALUELOAD/CLKAHB，其中 CLKAHB =72MHZ
@@ -44,13 +43,13 @@ PS：此程序文件中含有多个不同思路的定时函数，Delay_us、SysT
 
 
 
-
-stm32f10x_it.c
+< stm32f10x_it.c >
 
 	1.在 SysTick 中断函数处调用之前编写的中断服务函数
 
 
-main.c
+
+< main.c >
 
 	1.初始化LED端口
 	2.初始化系统定时器
@@ -58,12 +57,12 @@ main.c
 
 
 
-
 /*********************************************************************************************/
 【*】 联系我们
 
--野火论坛    :http://www.firebbs.cn
--淘宝店铺    :https://yehuosm.tmall.com/
-
+-野火官网  :https://embedfire.com
+-野火论坛  :http://www.firebbs.cn
+-野火商城  :https://yehuosm.tmall.com/
+-野火资料下载中心：http://doc.embedfire.com/products/link
 
 /*********************************************************************************************/

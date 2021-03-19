@@ -44,7 +44,7 @@
 /*********************************************************************************************/
 【*】程序描述：
 
-bsp_usart_dma.h
+< bsp_usart_dma.h >
 
 	1.宏定义USART的端口、时钟、波特率
 	2.宏定义USART对应的GPIO的时钟、引脚
@@ -52,9 +52,9 @@ bsp_usart_dma.h
 
 
 
-bsp_usart_dma.c
+< bsp_usart_dma.c >
 
-   串口DMA传输配置       ----（位置在对应文件的最后）
+- 串口DMA传输配置       ----（位置在对应文件的最后）
 
 	1.引用结构体
 	2.开启DMA的时钟
@@ -64,8 +64,7 @@ bsp_usart_dma.c
 	6.配置DMA通道，使能DMA以启动DMA数据传输
 
 PS：其中，在此函数前使用的USART函数配置与USART实验所使用的相同。
-
-   配置USART
+- 配置USART
 
 	1.引用结构体
 	2.把GPIO和串口外设的时钟打开，
@@ -74,20 +73,20 @@ PS：其中，在此函数前使用的USART函数配置与USART实验所使用�
 	5.完成串口的初始化配置
 	6.使能串口接收中断，使能串口
 
-   字符发送
+- 字符发送
 
 	1.发送一个字节数据到USART
 	2.等待发送数据寄存器为空
 	3.调用发送字节函数，通过循环，使程序能够发送字符串
 
-   重定向 prinft 和 scanf函数
+- 重定向 prinft 和 scanf函数
 
 	1.修改属于printf函数内部的fputc函数，把字符写入我们的USART位置输出
 	2.修改属于scanf函数内部的fgetc函数，使其等待串口输入数据再输出
 
 
 
-main.c
+< main.c >
 
 	1.初始化串口
 	2.配置使用DMA模式
@@ -103,7 +102,9 @@ main.c
 
 【*】 联系我们
 
--野火论坛    :http://www.firebbs.cn
--淘宝店铺    :https://yehuosm.tmall.com/
+-野火官网  :https://embedfire.com
+-野火论坛  :http://www.firebbs.cn
+-野火商城  :https://yehuosm.tmall.com/
+-野火资料下载中心：http://doc.embedfire.com/products/link
 
 /*********************************************************************************************/

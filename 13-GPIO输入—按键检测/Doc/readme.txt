@@ -39,28 +39,31 @@ LED：
 
 【*】程序描述：
 
-bsp_key.h
+< bsp_key.h >
 
 	1.宏定义按键对应的GPIO端口，GPIO时钟，GPIO引脚
 	2.把按键的常用状态（按下、断开）定义成宏
 
-bsp_key.c
 
-   按键GPIO初始化
+
+< bsp_key.c >
+
+- 按键GPIO初始化
 
 	1.引用结构体
 	2.开启按键的GPIO对应的外设时钟
 	3.设置引脚、模式
 	4.初始化GPIO（根据设定参数配置 GPIO）
 
-   检测按键的状态
+- 检测按键的状态
 	
 	1.定义Key_Scan函数用于扫描按键状态
 	2.利用GPIO_ReadInputDataBit函数（STM32标准库提供）获取GPIO引脚的输入电平
 	3.判断GPIO_ReadInputDataBit的返回值是否与自定义的宏KEY_ON一致，一致则循环检测按键是否释放，按键释放后则返回一个KEY_ON
 
 
-main.c
+
+<main.c>
 
 	1.调用初始化LED GPIO函数，初始化LED端口
 	2.调用按键GPIO初始化函数，初始化按键
@@ -68,18 +71,17 @@ main.c
 
 
 
-
 PS：其中，bsp_led.h  、bsp_led.c 沿用了之前  《使用固件库点亮LED灯》中的程序
 
-
-
-bsp_led.h  （其中，bsp为Board Support Packet （板级支持包）的缩写）
+< bsp_led.h >  
 
 	1.宏定义LED灯对应的GPIO端口，GPIO时钟，GPIO引脚
 	2.把LED的常用状态（亮、灭、状态反转）也直接定义成宏
 	3.把控制R、G、B灯的不同开关状态混出不同的颜色对应的状态定义成宏
 
-bsp_led.c   <——>  LED GPIO初始化
+< bsp_led.c >     
+
+- LED GPIO初始化
 
 	1.引用结构体
 	2.开启GPIO对应的外设时钟
@@ -89,17 +91,13 @@ bsp_led.c   <——>  LED GPIO初始化
 
 
 
-
-
-
 /*********************************************************************************************/
-
-
-
 【*】 联系我们
 
--野火论坛    :http://www.firebbs.cn
--淘宝店铺    :https://yehuosm.tmall.com/
+-野火官网  :https://embedfire.com
+-野火论坛  :http://www.firebbs.cn
+-野火商城  :https://yehuosm.tmall.com/
+-野火资料下载中心：http://doc.embedfire.com/products/link
 
 /*********************************************************************************************/
 
