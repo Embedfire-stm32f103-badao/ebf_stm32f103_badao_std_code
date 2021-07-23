@@ -578,6 +578,16 @@
               <FileType>1</FileType>
               <FilePath>..\..\User\Bsp\usart\bsp_usart.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_spi_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Bsp\flash\bsp_spi_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_sdio_sdcard.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Bsp\sdio\bsp_sdio_sdcard.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -597,16 +607,6 @@
               <FileName>cc936.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\User\FATFS\option\cc936.c</FilePath>
-            </File>
-            <File>
-              <FileName>fatfs_flash_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\User\FATFS\drivers\fatfs_flash_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>fatfs_sd_sdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\User\FATFS\drivers\fatfs_sd_sdio.c</FilePath>
             </File>
           </Files>
         </Group>
