@@ -11,6 +11,10 @@
 #define FLASH_ROOT    "1:"
 
 
+//定义宏——刷4.5寸的"GB2312字库（4.5寸用）"；默认为取消定义则不刷
+#define SELECT_AUX_GB2312_32_32
+
+
 typedef enum 
 {
     UPDATE,
@@ -30,9 +34,13 @@ typedef struct
 typedef enum 
 {
     AUX_DATA_ERROR = -1,
-  
+
+#ifndef SELECT_AUX_GB2312_32_32
     AUX_XBF_XINSONGTI, 
     AUX_HZLIB,
+#else
+    AUX_GB2312_32_32,
+#endif
 		AUX_GB2312,
     AUX_UNIGBK, 
     AUX_FILE_SYSTEM,      //FLASH文件系统

@@ -39,6 +39,7 @@ char sd_scan_dir[255]= SD_ROOT;
 //要写入的数据的信息
 Aux_Data_Typedef  burn_data[] =  
 {
+
   [AUX_XBF_XINSONGTI] =
   {
     .filename           =   "0:/srcdata/songti.xbf",
@@ -75,21 +76,12 @@ Aux_Data_Typedef  burn_data[] =
     .burn_option      =  UPDATE,      
   },     
 
-   [AUX_GB2312_32_32] = 
-  {
-    .filename           =   "0:/srcdata/GB2312_H3232.FON",
-    .description        =   "GB2312字库（4.5寸用）",
-    .start_addr         =   512*4096 ,
-    .length             =   256*4096, 
-    .burn_option      =  UPDATE,
-  },
-  
   [AUX_FILE_SYSTEM] =
   {
     .filename           =   "",
     .description        =   "FATFS文件系统",
-    .start_addr         =   770*4096 ,
-    .length             =   1280*4096, 
+    .start_addr         =   512*4096 ,
+    .length             =   1536*4096, 
     .burn_option      =  DO_NOT_UPDATE,
   }
 

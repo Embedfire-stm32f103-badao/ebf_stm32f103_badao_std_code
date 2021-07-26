@@ -26,6 +26,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x.h"
 
+#include "diskio.h"
+#include "integer.h"
+
 /* Exported types ------------------------------------------------------------*/
 typedef enum
 {
@@ -209,7 +212,7 @@ typedef struct
   * @brief  SDIO Data Transfer Frequency (25MHz max) 
   */
 /*!< SDIOCLK = HCLK, SDIO_CK = HCLK/(2 + SDIO_TRANSFER_CLK_DIV) */
-#define SDIO_TRANSFER_CLK_DIV            ((uint8_t)0x06) 
+#define SDIO_TRANSFER_CLK_DIV            ((uint8_t)0x01) 
 
 	  
 /** 
@@ -341,6 +344,14 @@ SD_Error SD_WaitReadOperation(void);
 SD_Error SD_WaitWriteOperation(void);
 
 
+
+
+/*------------  FatFS  --------------------------*/
+DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void);
+DSTATUS TM_FATFS_SD_SDIO_disk_status(void);
+DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff);
 
 #endif /* __SDCARD_H */
 
