@@ -526,7 +526,9 @@ FIL file;
 UINT bw;
 
 static uint8_t  buffer[BUFSIZE];
-
+char Restart_Play_flag = 0;
+extern char song_pt;
+extern char song_number_max;
 //播放歌曲
 void vs1053_player_song(uint8_t *filepath)
 {
@@ -542,7 +544,7 @@ void vs1053_player_song(uint8_t *filepath)
 	result=f_open(&file,(const TCHAR*)filepath,FA_READ);
 
 	if(result==0)
-	{ 
+	{
 		VS_SPI_SpeedHigh();				   
 		while(1)
 		{
@@ -553,8 +555,15 @@ void vs1053_player_song(uint8_t *filepath)
 				if(VS_Send_MusicData(buffer+i)==0)
 				{
 					i+=32;
+					if(Restart_Play_flag)
+					{
+						VS_Restart_Play();
+						Restart_Play_flag = 0;
+						goto exit;
+					}
 				}
 			}while(i<bw);
+			
 			
 			if(bw!=BUFSIZE||result!=0)
 			{
@@ -562,7 +571,17 @@ void vs1053_player_song(uint8_t *filepath)
 			}
 			LED2_TOGGLE;
 		}
+		exit:
 		f_close(&file);
+		
+		/* 播放一下曲 */
+		song_pt++;  
+		
+		/* 歌曲的最大数量自动计算 */
+		if(song_pt == song_number_max)  
+		{
+			song_pt = 0;
+		}
 	}	  					     	  
 }
 

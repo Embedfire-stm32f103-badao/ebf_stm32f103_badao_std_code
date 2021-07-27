@@ -25,6 +25,7 @@
 #include "stm32f10x_it.h"	
 #include "bsp_usart1.h"
 #include "bsp_sdio_sdcard.h"
+#include "bsp_exti.h"
 extern void TimingDelay_Decrement(void);
 //volatile uint32_t sys_cnt=0;
 
@@ -169,5 +170,28 @@ void SDIO_IRQHandler(void)
 {
   /* Process All SDIO Interrupt Sources */
   SD_ProcessIRQSrc();
+}
+
+extern char Restart_Play_flag;
+void KEY1_IRQHandler(void)
+{
+  //确保是否产生了EXTI Line中断
+	if(EXTI_GetITStatus(KEY1_INT_EXTI_LINE) != RESET) 
+	{
+		Restart_Play_flag = 1;
+    //清除中断标志位
+		EXTI_ClearITPendingBit(KEY1_INT_EXTI_LINE);     
+	}  
+}
+
+void KEY2_IRQHandler(void)
+{
+  //确保是否产生了EXTI Line中断
+	if(EXTI_GetITStatus(KEY2_INT_EXTI_LINE) != RESET) 
+	{
+
+    //清除中断标志位
+		EXTI_ClearITPendingBit(KEY2_INT_EXTI_LINE);     
+	}  
 }
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/
