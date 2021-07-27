@@ -88,7 +88,7 @@ uint16_t MAL_Write(uint8_t lun, uint32_t Memory_Offset, uint32_t *Writebuff, uin
   switch (lun)
   {
     case 0:
-			Memory_Offset+=(770*4096);//扇区偏移，外部Flash文件系统空间放在外部Flash后面5M空间
+			Memory_Offset+=(512*4096);//扇区偏移，外部Flash文件系统空间放在外部Flash后面6M空间
 			//printf("write add =%d.length=%d\n",Memory_Offset/4096,Transfer_Length/4096);
 			SPI_FLASH_SectorErase(Memory_Offset);
 			SPI_FLASH_BufferWrite((uint8_t *)Writebuff,Memory_Offset,Transfer_Length);
@@ -121,7 +121,7 @@ uint16_t MAL_Read(uint8_t lun, uint32_t Memory_Offset, uint32_t *Readbuff, uint1
   switch (lun)
   {
     case 0:
-			Memory_Offset+=(770*4096);//扇区偏移，外部Flash文件系统空间放在外部Flash后面5M空间
+			Memory_Offset+=(512*4096);//扇区偏移，外部Flash文件系统空间放在外部Flash后面6M空间
 			//printf("read add =%d.length=%d\n",Memory_Offset/4096,Transfer_Length/4096);
 			SPI_FLASH_BufferRead((uint8_t *)Readbuff, Memory_Offset, Transfer_Length);
       break;
@@ -161,7 +161,7 @@ uint16_t MAL_GetStatus (uint8_t lun)
 			if(SPI_FLASH_ReadID()==sFLASH_ID)
 			{
 				Mass_Block_Size[0]  =4096;
-				Mass_Block_Count[0] =1280;
+				Mass_Block_Count[0] =1536;
 				Mass_Memory_Size[0] =Mass_Block_Size[0]*Mass_Block_Count[0];
 				return MAL_OK;
 			}

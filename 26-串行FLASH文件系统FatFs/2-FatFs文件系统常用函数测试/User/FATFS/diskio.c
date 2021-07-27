@@ -98,7 +98,7 @@ DRESULT disk_read (
 			break;
     
 		case SPI_FLASH:
-      /* 扇区偏移3，外部Flash文件系统空间放在SPI Flash后面5MB空间 */
+      /* 扇区偏移2MB，外部Flash文件系统空间放在SPI Flash后面6MB空间 */
       sector+=512;      
       SPI_FLASH_BufferRead(buff, sector <<12, count<<12);
       status = RES_OK;
@@ -132,7 +132,7 @@ DRESULT disk_write (
 		break;
 
 		case SPI_FLASH:
-      /* 扇区偏移3MB，外部Flash文件系统空间放在SPI Flash后面5MB空间 */
+      /* 扇区偏移2MB，外部Flash文件系统空间放在SPI Flash后面6MB空间 */
 			sector+=512;
       write_addr = sector<<12;    
       SPI_FLASH_SectorErase(write_addr);
@@ -166,7 +166,7 @@ DRESULT disk_ioctl (
     
 		case SPI_FLASH:
 			switch (cmd) {
-        /* 扇区数量：1280*4096/1024/1024=5(MB) */
+        /* 扇区数量：1536*4096/1024/1024=6(MB) */
         case GET_SECTOR_COUNT:
           *(DWORD * )buff = 1536;		
         break;
